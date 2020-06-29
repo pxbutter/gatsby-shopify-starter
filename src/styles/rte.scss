@@ -1,0 +1,16 @@
+.rte {
+  h1,
+  h2,
+  h3 {
+    margin-top: calc(var(--gs) * 0.75);
+    margin-bottom: calc(var(--gs) * 0.5);
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+
+  p {
+    margin-bottom: var(--gs);
+  }
+}

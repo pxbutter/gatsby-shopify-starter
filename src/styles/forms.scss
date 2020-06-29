@@ -1,0 +1,210 @@
+.contactPageWrapper {
+  background-color: var(--bg);
+}
+
+.contact-form {
+  margin-bottom: 180px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+input[type="password"] {
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  width: 100%;
+  padding: 0.5em 0;
+  font-size: em(15);
+  box-shadow: none;
+
+  &:focus {
+    outline: none;
+    border-bottom-color: var(--black);
+  }
+
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px var(--bg) inset;
+    background-color: transparent;
+    border-top-color: var(--bg);
+    border-right-color: var(--bg);
+    border-left-color: var(--bg);
+  }
+
+  .field-required & {
+    padding-right: 60px;
+  }
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+textarea {
+  background: none;
+  border: 1px solid transparent;
+  border-bottom-color: var(--border-color);
+  width: 100%;
+  padding: 0.5em 0;
+  font-size: em(15);
+
+  &:focus {
+    outline: none;
+    border-bottom-color: var(--black);
+  }
+}
+
+select {
+  background-color: transparent;
+  background-image: $chevron-down;
+  background-repeat: no-repeat;
+  background-position: center right 15px;
+  border: 1px solid var(--border-color);
+  width: 100%;
+  padding: 0.5em;
+  font-size: em(15);
+  appearance: none;
+  border-radius: 0;
+
+  &:focus {
+    outline: none;
+    border-color: var(--black);
+  }
+}
+
+.has-float-label {
+  @include float-label-container;
+  @include float-label;
+  margin-bottom: var(--gs);
+
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  textarea {
+    width: 100%;
+  }
+
+  input,
+  select,
+  textarea {
+    @include float-label-input;
+    font-size: inherit;
+    padding-top: 0.5em;
+    margin-bottom: 0;
+    border-radius: 0;
+    border-bottom: 1px solid var(--border-color);
+
+    @include float-label-scaled {
+      top: 0.75em;
+    }
+
+    &:focus {
+      outline: none;
+      border-bottom-color: var(--black);
+    }
+  }
+
+  &.has-error {
+    input {
+      border-bottom: 1px solid var(--error);
+    }
+
+    .required-indicator {
+      color: var(--error);
+    }
+
+    .form-errors {
+      position: absolute;
+      right: 0;
+      bottom: 0.5em;
+    }
+  }
+}
+
+.has-label {
+  position: relative;
+  margin-bottom: calc(var(--gs) * 1.25);
+
+  label {
+    padding-top: var(--gs);
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  &.has-error {
+    select {
+      border-bottom: 1px solid var(--error);
+    }
+  }
+}
+
+.has-hidden-label {
+  position: relative;
+  margin-bottom: calc(var(--gs) * 1.25);
+
+  label {
+    @include visually-hidden;
+  }
+
+  &.has-error {
+    select {
+      border-bottom: 1px solid var(--error);
+    }
+  }
+}
+
+.optional-indicator,
+.required-indicator {
+  position: absolute;
+  right: 0;
+  bottom: 0.5em;
+  color: var(--black);
+  font-size: em(12);
+  pointer-events: none;
+}
+
+.form-errors {
+  display: block;
+  color: var(--error);
+  font-size: em(12);
+  pointer-events: none;
+  text-align: right;
+  margin-left: auto;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  > div,
+  > button {
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 40%;
+    margin-bottom: var(--gs);
+  }
+}
+
+input[type="file"] {
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+  width: 1px;
+  height: 1px;
+}
+
+input[type="file"] + label {
+  cursor: pointer;
+}

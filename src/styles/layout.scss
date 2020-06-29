@@ -1,0 +1,30 @@
+@import "./defaults";
+@import "./variables";
+@import "./typography";
+@import "./rte";
+@import "./mixins";
+@import "./grid";
+
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  transition: color 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+    fill 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  background-color: var(--white);
+  color: var(--black);
+}
+
+body.dark {
+  background-color: var(--black);
+  color: var(--white);
+}

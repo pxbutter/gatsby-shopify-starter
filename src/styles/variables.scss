@@ -1,0 +1,29 @@
+:root {
+  --gs: 20px;
+  --gm: 40px;
+  --gl: 60px;
+  --max-width: 1800px;
+  --border: #000000;
+  --text: #000000;
+  --link: #000000;
+  --link-hover: #000000;
+  --black: #000000;
+  --white: #ffffff;
+  --accent: blue;
+  --grid-small: 480px;
+  --grid-small-max: 479px;
+  --grid-medium: 769px;
+  --grid-medium-max: 768px;
+  --grid-large: 990px;
+  --grid-large-max: 989px;
+  --grid-widescreen: 1400px;
+  --grid-widescreen-max: 1399px;
+}
+
+// $chevron-down: url("/icon-chevron-down.svg");
+
+// Grid
+$grid-small: 480px;
+$grid-medium: 769px;
+$grid-large: 990px;
+$grid-widescreen: 1400px;
