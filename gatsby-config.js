@@ -1,10 +1,10 @@
 require("dotenv").config()
 module.exports = {
   siteMetadata: {
-    title: `Extra Medium`,
-    description: `Extra Medium`,
+    title: `Gatsby Shopify`,
+    description: `Gatsby Shopify Starter`,
     author: `Alex Iversen`,
-    siteUrl: `https://extramedium.xyz`,
+    siteUrl: `https://rightfit.co`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -37,12 +37,12 @@ module.exports = {
     //     liveReload: process.env.BRANCH === "develop",
     //   },
     // },
-    {
-      resolve: `gatsby-source-datocms`,
-      options: {
-        apiToken: process.env.DATO_API_TOKEN,
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-datocms`,
+    //   options: {
+    //     apiToken: process.env.DATO_API_TOKEN,
+    //   },
+    // },
     `gatsby-plugin-sass`,
     {
       resolve: `gatsby-plugin-layout`,
