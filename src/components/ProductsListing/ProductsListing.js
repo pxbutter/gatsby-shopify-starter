@@ -1,10 +1,7 @@
 import React from "react"
-import { graphql, useStaticQuery, StaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 import ProductCard from "./ProductCard"
 import styled from "styled-components"
-import Grid from "../../helpers/Grid"
-
-// const ProductGrid = styled.div``
 
 const ProductsListing = () => {
   let products = {}
@@ -45,14 +42,18 @@ const ProductsListing = () => {
   return (
     <>
       <h2 className="title">Homepage Collection</h2>
-      <Grid>
-        <div className="grid-item grid-item__one-quarter">
+      <div class="container">
+        <div class="row">
           {products.map(
             ({ node: product }) =>
-              product && <ProductCard key={product.id} product={product} />
+              product && (
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                  <ProductCard key={product.id} product={product} />
+                </div>
+              )
           )}
         </div>
-      </Grid>
+      </div>
     </>
   )
 }
