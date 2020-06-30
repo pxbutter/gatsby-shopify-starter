@@ -70,14 +70,12 @@ const Cart = ({ isCartOpen }) => {
         }}
       >
         <button
+          onClick={toggleCartOpen}
           style={{
-            background: "var(--red)",
             position: "absolute",
             top: 10,
             right: 10,
           }}
-          className="delete is-large"
-          onClick={toggleCartOpen}
         >
           Close Cart
         </button>
@@ -158,16 +156,11 @@ const Cart = ({ isCartOpen }) => {
               Total: <h5 className="title">${checkout.totalPrice}</h5>
             </div>
             <div style={{ marginTop: "2rem" }}>
-              <a
-                href={checkout.webUrl}
-                className="button is-fullwidth is-success"
-              >
-                Checkout Now
-              </a>
+              <a href={checkout.webUrl}>Checkout Now</a>
             </div>
           </>
         ) : (
-          <p>No items in cart</p>
+          <p>There are no items in your cart</p>
         )}
       </motion.div>
       <motion.div

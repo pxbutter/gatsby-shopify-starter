@@ -1,29 +1,36 @@
 import React from "react"
-import { graphql, StaticQuery } from "gatsby"
+import { graphql, useStaticQuery, StaticQuery } from "gatsby"
 import ProductCard from "./ProductCard"
+import styled from "styled-components"
+import Grid from "../../helpers/Grid"
 
-const PRODUCTS_LISTING_QUERY = graphql`
-  query ProductsListingQuery {
-    products: allShopifyProduct(sort: { fields: publishedAt, order: ASC }) {
-      edges {
-        node {
-          title
-          id
-          handle
-          description
-          productType
-          variants {
-            shopifyId
+// const ProductGrid = styled.div``
+
+const ProductsListing = () => {
+  let products = {}
+  const PRODUCTS_LISTING_QUERY = useStaticQuery(graphql`
+    query ProductsListingQuery {
+      products: allShopifyProduct(sort: { fields: publishedAt, order: ASC }) {
+        edges {
+          node {
             title
-            price
-            availableForSale
-          }
-          images {
             id
-            localFile {
-              childImageSharp {
-                fluid(maxWidth: 400, maxHeight: 400) {
-                  ...GatsbyImageSharpFluid_withWebp
+            handle
+            description
+            productType
+            variants {
+              shopifyId
+              title
+              price
+              availableForSale
+            }
+            images {
+              id
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 400, maxHeight: 400) {
+                    ...GatsbyImageSharpFluid_withWebp
+                  }
                 }
               }
             }
@@ -31,27 +38,22 @@ const PRODUCTS_LISTING_QUERY = graphql`
         }
       }
     }
-  }
-`
+  `)
 
-const ProductsListing = () => {
+  products = PRODUCTS_LISTING_QUERY.products.edges
+
   return (
-    <div>
-      <h2 className="title">Products</h2>
-      <StaticQuery
-        query={PRODUCTS_LISTING_QUERY}
-        render={({ products }) => {
-          return (
-            <div className="">
-              <h1>{products.handle}</h1>
-              {products.edges.map(({ node: product }) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-          )
-        }}
-      />
-    </div>
+    <>
+      <h2 className="title">Homepage Collection</h2>
+      <Grid>
+        <div className="grid-item grid-item__one-quarter">
+          {products.map(
+            ({ node: product }) =>
+              product && <ProductCard key={product.id} product={product} />
+          )}
+        </div>
+      </Grid>
+    </>
   )
 }
 
