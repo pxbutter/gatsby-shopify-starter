@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql, StaticQuery } from "gatsby"
-import ProductsListingItem from "./ProductsListingItem"
+import ProductCard from "./ProductCard"
 
 const PRODUCTS_LISTING_QUERY = graphql`
   query ProductsListingQuery {
@@ -42,10 +42,10 @@ const ProductsListing = () => {
         query={PRODUCTS_LISTING_QUERY}
         render={({ products }) => {
           return (
-            <div className="columns is-multiline">
+            <div className="">
               <h1>{products.handle}</h1>
               {products.edges.map(({ node: product }) => (
-                <ProductsListingItem key={product.id} product={product} />
+                <ProductCard key={product.id} product={product} />
               ))}
             </div>
           )

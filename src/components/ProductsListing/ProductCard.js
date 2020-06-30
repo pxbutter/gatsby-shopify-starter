@@ -4,14 +4,14 @@ import Image from "gatsby-image"
 import { StoreContext } from "../../context/StoreContext"
 import AddToCart from "../Cart/AddToCart"
 
-const ProductsListingItem = ({ product }) => {
+const ProductCard = ({ product }) => {
   const { toggleCartOpen } = useContext(StoreContext)
   const {
     images: [firstImage],
     variants: [firstVariant],
   } = product
   return (
-    <article className="column is-one-quarter content">
+    <article>
       <Link
         to={`/product/${product.handle}`}
         style={{ display: "block", marginBottom: "2rem" }}
@@ -28,4 +28,4 @@ const ProductsListingItem = ({ product }) => {
   )
 }
 
-export default ProductsListingItem
+export default ProductCard

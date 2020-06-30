@@ -1,8 +1,9 @@
 import React, { useContext } from "react"
 import { graphql } from "gatsby"
 import Image from "gatsby-image"
-import AddToCart from "../components/Cart/AddToCart"
 import { StoreContext } from "../context/StoreContext"
+import AddToCart from "../components/Cart/AddToCart"
+import Grid from "../helpers/Grid"
 
 const ProductDetailTemplate = ({ data }) => {
   const { toggleCartOpen } = useContext(StoreContext)
@@ -13,11 +14,11 @@ const ProductDetailTemplate = ({ data }) => {
   } = product
   return (
     <>
-      <div className="columns">
-        <div className="column">
+      <Grid>
+        <div className="grid-item grid-item__half--left">
           <Image fluid={firstImage.localFile.childImageSharp.fluid} />
         </div>
-        <div className="column">
+        <div className="grid-item grid-item__half--right">
           <h1 className="title">{product.title}</h1>
           <p className="subtitle is-4">${firstVariant.price}</p>
           <p>{product.description}</p>
@@ -26,7 +27,7 @@ const ProductDetailTemplate = ({ data }) => {
             toggleCartOpen={toggleCartOpen}
           />
         </div>
-      </div>
+      </Grid>
     </>
   )
 }

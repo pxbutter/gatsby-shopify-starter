@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import ProductsListingItem from "../components/ProductsListing/ProductsListingItem"
+import ProductCard from "../components/ProductsListing/ProductCard"
 
 const ProductCategoriesTemplate = ({ data }) => {
   const { shopifyCollection } = data
@@ -11,7 +11,7 @@ const ProductCategoriesTemplate = ({ data }) => {
         <h2 className="title">{shopifyCollection.title}</h2>
         <div className="columns is-multiline">
           {shopifyCollection.products.map(product => (
-            <ProductsListingItem key={product.id} product={product} />
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
       </div>

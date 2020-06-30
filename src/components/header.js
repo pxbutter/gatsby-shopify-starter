@@ -2,7 +2,6 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React, { useContext } from "react"
 import styled from "styled-components"
-import { motion } from "framer-motion"
 import { ThemeToggler } from "gatsby-plugin-dark-mode"
 import Logo from "../assets/logo.svg"
 import Sun from "../assets/icon-sun.svg"
@@ -89,9 +88,6 @@ const Header = ({ siteTitle }) => {
         {qty > 0 && (
           <div
             style={{
-              color: "white",
-              position: "absolute",
-              background: "var(--red)",
               borderRadius: 15,
               textAlign: "center",
               height: 30,
@@ -106,6 +102,7 @@ const Header = ({ siteTitle }) => {
         )}
         {/* <CartIcon /> */}
       </button>
+      <Cart isCartOpen={isCartOpen} />
     </HeaderWrapper>
   )
 }

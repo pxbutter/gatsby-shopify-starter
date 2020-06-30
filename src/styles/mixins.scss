@@ -1,0 +1,150 @@
+/* Font size mixin converts pixels to ems */
+$browser-context: 16; // Default
+
+@function em($pixels, $context: $browser-context) {
+  @return #{$pixels/$context}em;
+}
+
+@mixin line-height($heightValue: 24) {
+  line-height: $heightValue + px; //fallback for old browsers
+  line-height: (0.0625 * $heightValue);
+}
+
+/* Mixin for fluid typography */
+/* Usage: @include fluid-type($min_width, $max_width, $min_font, $max_font); */
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+  $u1: unit($min-vw);
+  $u2: unit($max-vw);
+  $u3: unit($min-font-size);
+  $u4: unit($max-font-size);
+
+  @if $u1==$u2 and $u1==$u3 and $u1==$u4 {
+    & {
+      font-size: $min-font-size;
+
+      @media screen and (min-width: $min-vw) {
+        font-size: calc(
+          #{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} *
+            ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
+        );
+      }
+
+      @media screen and (min-width: $max-vw) {
+        font-size: $max-font-size;
+      }
+    }
+  }
+}
+
+/**
+ * Sets a media query for the specified breakpoint
+ *
+ * Accepts:
+ * - $media-query: {String} Breakpoint variable (list found in variables.scss)
+ *
+ * Usage:
+ * .selector {
+ *   @include media-query($medium-up) {
+ *     color: red;
+ *   }
+ * }
+ */
+@mixin media-query($media-query) {
+  $breakpoint-found: false;
+
+  @each $breakpoint in $breakpoints {
+    $name: nth($breakpoint, 1);
+    $declaration: nth($breakpoint, 2);
+
+    @if $media-query==$name and $declaration {
+      $breakpoint-found: true;
+
+      @media only screen and #{$declaration} {
+        @content;
+      }
+    }
+  }
+}
+
+/*** Responsive Show/Hide Helper ***/
+@mixin responsive-display-helper($grid-breakpoint-type: "") {
+  .#{$grid-breakpoint-type}show {
+    display: block !important;
+  }
+
+  .#{$grid-breakpoint-type}hide {
+    display: none !important;
+  }
+}
+
+@include responsive-display-helper();
+
+@each $breakpoint in $grid-breakpoint-has-utility {
+  @include media-query($breakpoint) {
+    @include responsive-display-helper("#{$breakpoint}--");
+  }
+}
+
+@mixin visually-hidden() {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px);
+  /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+  /* added line */
+}
+
+@mixin caption() {
+  font-size: em(12);
+  color: var(--grey);
+}
+
+@mixin float-label-container {
+  display: block;
+  position: relative;
+}
+
+@mixin float-label {
+  label {
+    position: absolute;
+    left: 0;
+    top: -0.25rem;
+    cursor: text;
+    font-size: 0.75em;
+    line-height: 1;
+    opacity: 1;
+    transition: all 0.1s;
+    color: var(--grey);
+
+    @content;
+  }
+}
+
+@mixin float-label-input {
+  padding: 0.75em 0 0.25em;
+
+  &::placeholder {
+    opacity: 1;
+    transition: all 0.1s;
+  }
+  &:placeholder-shown:not(:focus)::placeholder {
+    opacity: 0;
+  }
+}
+
+@mixin float-label-scaled {
+  &:placeholder-shown:not(:focus) + * {
+    font-size: em(15);
+    text-transform: none;
+    opacity: 1;
+
+    @content;
+  }
+}
