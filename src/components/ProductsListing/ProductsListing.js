@@ -1,7 +1,6 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import ProductCard from "./ProductCard"
-import styled from "styled-components"
 
 const ProductsListing = () => {
   let products = {}
@@ -36,7 +35,6 @@ const ProductsListing = () => {
       }
     }
   `)
-
   products = PRODUCTS_LISTING_QUERY.products.edges
 
   return (

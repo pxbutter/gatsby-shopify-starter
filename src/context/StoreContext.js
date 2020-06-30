@@ -36,7 +36,7 @@ export const StoreProvider = ({ children }) => {
   // run init checkout on mount
   useEffect(() => {
     initializeCheckout()
-  }, [])
+  }, [isCartOpen])
 
   // get new checkout ID if one does not exist in local storage
   const getNewId = async () => {
