@@ -1,12 +1,15 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
 import { motion } from "framer-motion"
 import { ThemeToggler } from "gatsby-plugin-dark-mode"
 import Logo from "../assets/logo.svg"
 import Sun from "../assets/icon-sun.svg"
 import Moon from "../assets/icon-moon.svg"
+
+import { StoreContext } from "../context/StoreContext"
+import Cart from "./Cart/Cart"
 
 const HeaderWrapper = styled.header`
   padding: var(--gs);
@@ -51,34 +54,61 @@ const HeaderWrapper = styled.header`
   }
 `
 
-const Header = ({ siteTitle }) => (
-  <HeaderWrapper>
-    <Link to="/">
-      <Logo />
-    </Link>
-    <div>
-      <Link to="/contact">CONTACT</Link>
-    </div>
-    <ThemeToggler>
-      {({ theme, toggleTheme }) => (
-        <label>
-          <input
-            type="checkbox"
-            onChange={e => toggleTheme(e.target.checked ? "dark" : "light")}
-            checked={theme === "dark"}
-          />
-          <div className="theme-toggler--wrapper">
-            <Sun />
-            <Moon />
+const Header = ({ siteTitle }) => {
+  const { isCartOpen, toggleCartOpen, checkout } = useContext(StoreContext)
+  const qty = checkout.lineItems.reduce((total, item) => {
+    return total + item.quantity
+  }, 0)
+  return (
+    <HeaderWrapper>
+      <Link to="/">
+        <Logo />
+      </Link>
+      <div>
+        <Link to="/collection/all">Shop</Link>
+        <Link to="/#">Blog</Link>
+        <Link to="/#">About</Link>
+        <Link to="/#">Contact Us</Link>
+      </div>
+      <ThemeToggler>
+        {({ theme, toggleTheme }) => (
+          <label>
+            <input
+              type="checkbox"
+              onChange={e => toggleTheme(e.target.checked ? "dark" : "light")}
+              checked={theme === "dark"}
+            />
+            <div className="theme-toggler--wrapper">
+              <Sun />
+              <Moon />
+            </div>
+          </label>
+        )}
+      </ThemeToggler>
+      <button onClick={toggleCartOpen}>
+        {qty > 0 && (
+          <div
+            style={{
+              color: "white",
+              position: "absolute",
+              background: "var(--red)",
+              borderRadius: 15,
+              textAlign: "center",
+              height: 30,
+              top: -5,
+              right: -5,
+              width: 30,
+              lineHeight: "30px",
+            }}
+          >
+            {qty}
           </div>
-        </label>
-      )}
-    </ThemeToggler>
-    {/* <h1 style={{ margin: 0 }}>
-      <Link to="/">{siteTitle}</Link>
-    </h1> */}
-  </HeaderWrapper>
-)
+        )}
+        {/* <CartIcon /> */}
+      </button>
+    </HeaderWrapper>
+  )
+}
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
