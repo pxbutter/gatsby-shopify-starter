@@ -7,10 +7,22 @@ const Cart = ({ isCartOpen }) => {
     checkout,
     toggleCartOpen,
     removeProductFromCart,
+    updateLineItem,
     checkCoupon,
     removeCoupon,
   } = useContext(StoreContext)
   const [coupon, setCoupon] = useState("")
+  let qtyArr = Array.from(Array(10), (_, i) => i + 1)
+
+  // Adds more select options to line item quantity selector if large quantities required
+  checkout.lineItems.map(item => {
+    if (item.quantity > 8) {
+      qtyArr = Array.from(
+        Array(Math.ceil(item.quantity / 10) * 10 + 10),
+        (_, i) => i + 1
+      )
+    }
+  })
 
   const cartDrawerVariants = {
     open: {
@@ -53,6 +65,7 @@ const Cart = ({ isCartOpen }) => {
   return (
     <>
       <motion.div
+        className="cart"
         animate={isCartOpen ? "open" : "closed"}
         variants={cartDrawerVariants}
         style={{
@@ -63,7 +76,6 @@ const Cart = ({ isCartOpen }) => {
           width: "50%",
           height: "100%",
           transform: "translateX(200%)",
-          background: "white",
           padding: "40px 2%",
           boxShadow:
             "0 4px 16px rgba(17, 17, 26, 0.05), 0 8px 32px rgba(17, 17, 26, 0.05)",
@@ -82,34 +94,51 @@ const Cart = ({ isCartOpen }) => {
         <h3 className="title">Cart</h3>
         {checkout.lineItems.length > 0 ? (
           <>
-            {checkout.lineItems.map(item => (
-              <div
-                key={item.id}
-                style={{ display: "flex", marginBottom: "2rem" }}
-              >
+            {checkout.lineItems.map(item => {
+              return (
                 <div
-                  style={{
-                    width: 60,
-                    height: 60,
-                    overflow: "hidden",
-                    marginRight: 10,
-                  }}
+                  key={item.id}
+                  style={{ display: "flex", marginBottom: "2rem" }}
                 >
-                  <img src={item.variant.image.src} alt="" />
-                </div>
-                <div>
-                  <h4 className="title is-4">{item.title}</h4>
-                  <p className="subtitle is-5">${item.variant.price}</p>
-                  <p className="subtitle is-5">Qty: {item.quantity}</p>
-                  <button
-                    onClick={() => removeProductFromCart(item.id)}
-                    className="is-small button is-danger is-outlined"
+                  <div
+                    style={{
+                      width: 60,
+                      height: 60,
+                      overflow: "hidden",
+                      marginRight: 10,
+                    }}
                   >
-                    Remove
-                  </button>
+                    <img src={item.variant.image.src} alt="" />
+                  </div>
+                  <div>
+                    <h4 className="title is-4">{item.title}</h4>
+                    <p>${item.variant.price}</p>
+                    <select
+                      name="qty"
+                      id="qty"
+                      value={item.quantity}
+                      onChange={event =>
+                        updateLineItem(item.id, parseInt(event.target.value))
+                      }
+                    >
+                      {qtyArr.map(val => {
+                        return (
+                          <option key={val} value={val}>
+                            {val}
+                          </option>
+                        )
+                      })}
+                    </select>
+                    <button
+                      onClick={() => removeProductFromCart(item.id)}
+                      className="is-small button is-danger is-outlined"
+                    >
+                      Remove
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
 
             <div>
               {checkout.discountApplications.length > 0 ? (

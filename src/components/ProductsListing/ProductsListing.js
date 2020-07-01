@@ -40,12 +40,12 @@ const ProductsListing = () => {
   return (
     <>
       <h2 className="title">Homepage Collection</h2>
-      <div class="container">
-        <div class="row">
+      <div className="container">
+        <div className="row">
           {products.map(
             ({ node: product }) =>
               product && (
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                   <ProductCard key={product.id} product={product} />
                 </div>
               )
