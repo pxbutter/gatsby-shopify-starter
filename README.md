@@ -1,3 +1,29 @@
+
+- Pull content from Shopify and dynamically create pages
+- Add to cart from anywhere
+- Side Cart
+
+To do:
+- Select qty on PDP
+- Variant selector on PDP
+- Image slider on PDP
+- Check stock on page load and set product form state
+- Variant selector changes image
+- User accounts
+- Source yotpo reviews to PDP
+- Modal component
+- Accordion component (faq page)
+- Klaviyo signup form
+- Cart page?
+- Subscription stepped workflow and checkout
+- Sidecart upsell
+- PDP upsell
+- Contact form (reply deflection)
+
+Later
+- Blog
+-
+
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <h1 align="center">
 Gatsby Shopify Starter
