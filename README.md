@@ -7,11 +7,15 @@ To do:
 - Select qty on PDP
 - Variant selector on PDP
 - Image slider on PDP
+- Breadcrumbs
+- Collections page
+- Announcement Bar
 - Check stock on page load and set product form state
 - Variant selector changes image
 - User accounts
 - Source yotpo reviews to PDP
 - Modal component
+- Collection Filtering
 - Accordion component (faq page)
 - Klaviyo signup form
 - Cart page?
