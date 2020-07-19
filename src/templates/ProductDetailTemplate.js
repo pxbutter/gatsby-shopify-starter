@@ -29,7 +29,7 @@ const ProductDetailTemplate = ({ data }) => {
           <p className="subtitle is-4">${currentPrice}</p>
           <p>{product.description}</p>
           <AddToCart
-            variantId={firstVariant.shopifyId}
+            firstVariant={firstVariant}
             variants={product.variants.length >= 2 ? product.variants : null}
             selectedVariantPriceFromChild={selectedVariantPriceFromChild}
             toggleCartOpen={toggleCartOpen}

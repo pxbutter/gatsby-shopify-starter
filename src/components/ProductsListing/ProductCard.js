@@ -34,7 +34,7 @@ const ProductCard = ({ product }) => {
         </p>
       </Link>
       <AddToCart
-        variantId={firstVariant.shopifyId}
+        firstVariant={firstVariant}
         variants={product.variants.length >= 2 ? product.variants : null}
         selectedVariantPriceFromChild={selectedVariantPriceFromChild}
         toggleCartOpen={toggleCartOpen}

@@ -1,15 +1,34 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import { StoreContext } from "../../context/StoreContext"
 
 const AddToCart = ({
-  variantId,
+  firstVariant,
   variants,
   selectedVariantPriceFromChild,
   toggleCartOpen,
   showQty,
 }) => {
   const { addProductToCart } = useContext(StoreContext)
-  const [selectedVariantId, setSelectedVariantId] = useState(variantId)
+
+  const [initVariantId, setInitVariantId] = useState(firstVariant.shopifyId)
+  const [initVariantPrice, setInitVariantPrice] = useState(firstVariant.price)
+
+  // Get first available variant and set in state
+  useEffect(() => {
+    if (variants != null) {
+      variants.find(variant => {
+        if (variant.availableForSale === true) {
+          setInitVariantId(variant.shopifyId)
+          setInitVariantPrice(variant.price)
+        }
+        return variant.availableForSale === true
+      })
+    }
+  }, [])
+  selectedVariantPriceFromChild(initVariantPrice)
+
+  const [selectedVariantId, setSelectedVariantId] = useState(null)
+
   const [selectedQty, setSelectedQty] = useState(1)
   let qtyArr = Array.from(Array(10), (_, i) => i + 1)
 
@@ -21,11 +40,12 @@ const AddToCart = ({
           id="variant"
           onChange={event => {
             setSelectedVariantId(event.target.value)
-            const selectedVariantPrice =
+            setInitVariantPrice(
               event.target.options[event.target.selectedIndex].dataset
                 .variantPrice
+            )
             if (selectedVariantPriceFromChild) {
-              selectedVariantPriceFromChild(selectedVariantPrice)
+              selectedVariantPriceFromChild(initVariantPrice)
             }
           }}
         >
@@ -64,12 +84,15 @@ const AddToCart = ({
       <button
         className="button is-primary is-rounded"
         onClick={() => {
-          addProductToCart(selectedVariantId, selectedQty)
+          addProductToCart(
+            selectedVariantId != null ? selectedVariantId : initVariantId,
+            selectedQty
+          )
           toggleCartOpen()
         }}
       >
-        {/* {currentVariantAvailable ? "Add To Cart" : "Soldout"} */}
-        Add
+        {/* {firstVariant.availableForSale ? "Add To Cart" : "Soldout"} */}
+        Add To Cart
       </button>
     </>
   )
