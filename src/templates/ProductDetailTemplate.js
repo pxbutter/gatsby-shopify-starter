@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import { graphql } from "gatsby"
-import Image from "gatsby-image"
 import { StoreContext } from "../context/StoreContext"
+import ProductDetailSlider from "../components/ProductsListing/ProductDetailSlider"
 import AddToCart from "../components/Cart/AddToCart"
 import Grid from "../helpers/Grid"
 
@@ -17,7 +17,7 @@ const ProductDetailTemplate = ({ data }) => {
     <>
       <Grid>
         <div className="grid-item grid-item__half--left">
-          <Image fluid={firstImage.localFile.childImageSharp.fluid} />
+          <ProductDetailSlider images={product.images} />
         </div>
         <div className="grid-item grid-item__half--right">
           <h1 className="title">{product.title}</h1>
