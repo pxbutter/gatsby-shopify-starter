@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { Link } from "gatsby"
 import Image from "gatsby-image"
 import { StoreContext } from "../../context/StoreContext"
@@ -15,6 +15,12 @@ const ProductCard = ({ product }) => {
     (val, i, arr) => val === arr[0]
   )
 
+  const [currentPrice, setCurrentPrice] = useState(firstVariant.price)
+  // Get currently selected variant price from child component callback function
+  const selectedVariantPriceFromChild = dataFromChild => {
+    setCurrentPrice(dataFromChild)
+  }
+
   return (
     <article>
       <Link
@@ -24,12 +30,15 @@ const ProductCard = ({ product }) => {
         <Image fluid={firstImage.localFile.childImageSharp.fluid} />
         <h3 className="title is-3">{product.title}</h3>
         <p className="subtitle is-4">
-          {variantPricesMatch ? "" : "From "}${firstVariant.price}
+          {variantPricesMatch ? "" : "From "}${currentPrice}
         </p>
       </Link>
       <AddToCart
         variantId={firstVariant.shopifyId}
+        variants={product.variants.length >= 2 ? product.variants : null}
+        selectedVariantPriceFromChild={selectedVariantPriceFromChild}
         toggleCartOpen={toggleCartOpen}
+        showQty={true}
       />
     </article>
   )

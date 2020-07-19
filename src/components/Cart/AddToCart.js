@@ -24,7 +24,9 @@ const AddToCart = ({
             const selectedVariantPrice =
               event.target.options[event.target.selectedIndex].dataset
                 .variantPrice
-            selectedVariantPriceFromChild(selectedVariantPrice)
+            if (selectedVariantPriceFromChild) {
+              selectedVariantPriceFromChild(selectedVariantPrice)
+            }
           }}
         >
           {variants.map(variant => {
