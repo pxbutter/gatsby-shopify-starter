@@ -13,6 +13,8 @@ const AddToCart = ({
   const [selectedQty, setSelectedQty] = useState(1)
   let qtyArr = Array.from(Array(10), (_, i) => i + 1)
 
+  console.log("variants", variants)
+
   return (
     <>
       {variants && (
@@ -35,7 +37,7 @@ const AddToCart = ({
                 key={variant.shopifyId}
                 value={variant.shopifyId}
                 data-variant-price={variant.price}
-                data-test="test"
+                disabled={!variant.availableForSale}
               >
                 {variant.title}
               </option>
@@ -68,7 +70,8 @@ const AddToCart = ({
           toggleCartOpen()
         }}
       >
-        Add To Cart
+        {/* {currentVariantAvailable ? "Add To Cart" : "Soldout"} */}
+        Add
       </button>
     </>
   )
