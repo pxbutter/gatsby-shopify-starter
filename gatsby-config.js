@@ -29,6 +29,15 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: "gatsby-source-shopify",
+      options: {
+        shopName: process.env.SHOPIFY_SHOP_NAME,
+        accessToken: process.env.SHOPIFY_API_TOKEN,
+        verbose: true,
+        paginationSize: 30,
+      },
+    },
     // {
     //   resolve: `gatsby-source-datocms`,
     //   options: {

@@ -24,12 +24,14 @@
     "gatsby-plugin-styled-components": "^3.3.2",
     "gatsby-source-datocms": "^2.2.4",
     "gatsby-source-filesystem": "^2.3.4",
+    "gatsby-source-shopify": "^3.2.14",
     "gatsby-transformer-sharp": "^2.5.3",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.0.0",
+    "shopify-buy": "^2.7.0",
     "styled-components": "^5.1.1"
   },
   "devDependencies": {
