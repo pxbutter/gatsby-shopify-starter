@@ -1,7 +1,13 @@
 import React, { useContext } from "react"
 import { StoreContext } from "../../context/StoreContext"
 
-const AddToCart = ({ variantId, variants, toggleCartOpen, showQty }) => {
+const AddToCart = ({
+  variantId,
+  variants,
+  selectedVariantPriceFromChild,
+  toggleCartOpen,
+  showQty,
+}) => {
   const { addProductToCart } = useContext(StoreContext)
   let selectedVariantId = variantId
   let qtyArr = Array.from(Array(10), (_, i) => i + 1)
@@ -15,11 +21,20 @@ const AddToCart = ({ variantId, variants, toggleCartOpen, showQty }) => {
           id="variant"
           onChange={event => {
             selectedVariantId = event.target.value
+            const selectedVariantPrice =
+              event.target.options[event.target.selectedIndex].dataset
+                .variantPrice
+            selectedVariantPriceFromChild(selectedVariantPrice)
           }}
         >
           {variants.map(variant => {
             return (
-              <option key={variant.shopifyId} value={variant.shopifyId}>
+              <option
+                key={variant.shopifyId}
+                value={variant.shopifyId}
+                data-variant-price={variant.price}
+                data-test="test"
+              >
                 {variant.title}
               </option>
             )

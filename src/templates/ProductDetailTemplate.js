@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { graphql } from "gatsby"
 import { StoreContext } from "../context/StoreContext"
 import ProductDetailSlider from "../components/ProductsListing/ProductDetailSlider"
@@ -9,9 +9,14 @@ const ProductDetailTemplate = ({ data }) => {
   const { toggleCartOpen } = useContext(StoreContext)
   const { shopifyProduct: product } = data
   const {
-    images: [firstImage],
     variants: [firstVariant],
   } = product
+
+  const [currentPrice, setCurrentPrice] = useState(firstVariant.price)
+  // Get currently selected variant price from child component callback function
+  const selectedVariantPriceFromChild = dataFromChild => {
+    setCurrentPrice(dataFromChild)
+  }
 
   return (
     <>
@@ -21,11 +26,12 @@ const ProductDetailTemplate = ({ data }) => {
         </div>
         <div className="grid-item grid-item__half--right">
           <h1 className="title">{product.title}</h1>
-          <p className="subtitle is-4">${firstVariant.price}</p>
+          <p className="subtitle is-4">${currentPrice}</p>
           <p>{product.description}</p>
           <AddToCart
             variantId={firstVariant.shopifyId}
             variants={product.variants.length >= 2 ? product.variants : null}
+            selectedVariantPriceFromChild={selectedVariantPriceFromChild}
             toggleCartOpen={toggleCartOpen}
             showQty={true}
           />

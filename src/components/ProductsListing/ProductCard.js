@@ -10,6 +10,11 @@ const ProductCard = ({ product }) => {
     images: [firstImage],
     variants: [firstVariant],
   } = product
+
+  const variantPricesMatch = product.variants.every(
+    (val, i, arr) => val === arr[0]
+  )
+
   return (
     <article>
       <Link
@@ -18,7 +23,9 @@ const ProductCard = ({ product }) => {
       >
         <Image fluid={firstImage.localFile.childImageSharp.fluid} />
         <h3 className="title is-3">{product.title}</h3>
-        <p className="subtitle is-4">${firstVariant.price}</p>
+        <p className="subtitle is-4">
+          {variantPricesMatch ? "" : "From "}${firstVariant.price}
+        </p>
       </Link>
       <AddToCart
         variantId={firstVariant.shopifyId}
