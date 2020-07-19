@@ -45,7 +45,10 @@ const ProductsListing = () => {
           {products.map(
             ({ node: product }) =>
               product && (
-                <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div
+                  key={product.id}
+                  className="col-xs-12 col-sm-6 col-md-4 col-lg-3"
+                >
                   <ProductCard key={product.id} product={product} />
                 </div>
               )
