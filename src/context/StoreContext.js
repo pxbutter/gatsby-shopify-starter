@@ -4,8 +4,8 @@ import Client from "shopify-buy"
 // domain: process.env.SHOPIFY_SHOP_NAME,
 // storefrontAccessToken: process.env.SHOPIFY_API_TOKEN,
 const client = Client.buildClient({
-  domain: "dev-store-alex-twp.myshopify.com",
-  storefrontAccessToken: "680e96fdbbfb4475ddc4d800af4721e8",
+  domain: "gatsby-starter.myshopify.com",
+  storefrontAccessToken: "de74343e58263fa4a210f386e28e5994",
 })
 
 const defaultValues = {
@@ -87,7 +87,7 @@ export const StoreProvider = ({ children }) => {
       const lineItems = [
         {
           variantId,
-          quantity: qty ? qty : 1,
+          quantity: qty,
         },
       ]
       const newCheckout = await client.checkout.addLineItems(

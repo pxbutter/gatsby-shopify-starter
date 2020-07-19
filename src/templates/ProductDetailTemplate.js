@@ -12,6 +12,7 @@ const ProductDetailTemplate = ({ data }) => {
     images: [firstImage],
     variants: [firstVariant],
   } = product
+
   return (
     <>
       <Grid>
@@ -24,7 +25,9 @@ const ProductDetailTemplate = ({ data }) => {
           <p>{product.description}</p>
           <AddToCart
             variantId={firstVariant.shopifyId}
+            variants={product.variants.length >= 2 ? product.variants : null}
             toggleCartOpen={toggleCartOpen}
+            showQty={true}
           />
         </div>
       </Grid>
