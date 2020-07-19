@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { StoreContext } from "../../context/StoreContext"
 
 const AddToCart = ({
@@ -9,9 +9,9 @@ const AddToCart = ({
   showQty,
 }) => {
   const { addProductToCart } = useContext(StoreContext)
-  let selectedVariantId = variantId
+  const [selectedVariantId, setSelectedVariantId] = useState(variantId)
+  const [selectedQty, setSelectedQty] = useState(1)
   let qtyArr = Array.from(Array(10), (_, i) => i + 1)
-  let qty = 1
 
   return (
     <>
@@ -20,7 +20,7 @@ const AddToCart = ({
           name="variant"
           id="variant"
           onChange={event => {
-            selectedVariantId = event.target.value
+            setSelectedVariantId(event.target.value)
             const selectedVariantPrice =
               event.target.options[event.target.selectedIndex].dataset
                 .variantPrice
@@ -46,7 +46,7 @@ const AddToCart = ({
           name="qty"
           id="qty"
           onChange={event => {
-            qty = parseInt(event.target.value)
+            setSelectedQty(parseInt(event.target.value))
           }}
         >
           {qtyArr.map(val => {
@@ -62,7 +62,7 @@ const AddToCart = ({
       <button
         className="button is-primary is-rounded"
         onClick={() => {
-          addProductToCart(selectedVariantId, qty)
+          addProductToCart(selectedVariantId, selectedQty)
           toggleCartOpen()
         }}
       >
