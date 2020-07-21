@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { Link } from "gatsby"
 import Image from "gatsby-image"
 import { StoreContext } from "../../context/StoreContext"
@@ -10,6 +10,17 @@ const ProductCard = ({ product }) => {
     images: [firstImage],
     variants: [firstVariant],
   } = product
+
+  const variantPricesMatch = product.variants.every(
+    (val, i, arr) => val === arr[0]
+  )
+
+  const [currentPrice, setCurrentPrice] = useState(firstVariant.price)
+  // Get currently selected variant price from child component callback
+  const selectedVariantPriceFromChild = dataFromChild => {
+    setCurrentPrice(dataFromChild)
+  }
+
   return (
     <article>
       <Link
