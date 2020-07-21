@@ -1,12 +1,12 @@
 import React, { createContext, useState, useEffect } from "react"
 import Client from "shopify-buy"
 
-// domain: process.env.SHOPIFY_SHOP_NAME,
-// storefrontAccessToken: process.env.SHOPIFY_API_TOKEN,
 const client = Client.buildClient({
-  domain: "gatsby-starter.myshopify.com",
-  storefrontAccessToken: "de74343e58263fa4a210f386e28e5994",
+  domain: `${process.env.SHOPIFY_SHOP_NAME}.myshopify.com`,
+  storefrontAccessToken: process.env.SHOPIFY_API_TOKEN,
 })
+
+console.log("client", client)
 
 const defaultValues = {
   isCartOpen: false,

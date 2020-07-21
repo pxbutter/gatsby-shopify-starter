@@ -16,7 +16,7 @@ const ProductCard = ({ product }) => {
   )
 
   const [currentPrice, setCurrentPrice] = useState(firstVariant.price)
-  // Get currently selected variant price from child component callback function
+  // Get currently selected variant price from child component callback
   const selectedVariantPriceFromChild = dataFromChild => {
     setCurrentPrice(dataFromChild)
   }
