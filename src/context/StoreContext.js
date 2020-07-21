@@ -6,8 +6,6 @@ const client = Client.buildClient({
   storefrontAccessToken: process.env.SHOPIFY_API_TOKEN,
 })
 
-console.log("client", client)
-
 const defaultValues = {
   isCartOpen: false,
   toggleCartOpen: () => {},
