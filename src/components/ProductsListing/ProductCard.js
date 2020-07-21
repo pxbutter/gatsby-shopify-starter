@@ -29,11 +29,16 @@ const ProductCard = ({ product }) => {
       >
         <Image fluid={firstImage.localFile.childImageSharp.fluid} />
         <h3 className="title is-3">{product.title}</h3>
-        <p className="subtitle is-4">${firstVariant.price}</p>
+        <p className="subtitle is-4">
+          {variantPricesMatch ? "" : "From "}${currentPrice}
+        </p>
       </Link>
       <AddToCart
-        variantId={firstVariant.shopifyId}
+        firstVariant={firstVariant}
+        variants={product.variants.length >= 2 ? product.variants : null}
+        selectedVariantPriceFromChild={selectedVariantPriceFromChild}
         toggleCartOpen={toggleCartOpen}
+        showQty={true}
       />
     </article>
   )

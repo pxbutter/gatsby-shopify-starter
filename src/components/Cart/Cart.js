@@ -112,6 +112,7 @@ const Cart = ({ isCartOpen }) => {
                   </div>
                   <div>
                     <h4 className="title is-4">{item.title}</h4>
+                    <h6>{item.variant.title}</h6>
                     <p>${item.variant.price}</p>
                     <select
                       name="qty"
