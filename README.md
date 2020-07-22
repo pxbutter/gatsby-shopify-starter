@@ -28,6 +28,17 @@ To do:
 Later
 - Blog
 
+Add `.env.peoduction` & `.env.development` to the root directory:
+```
+SHOPIFY_SHOP_NAME=gatsby-starter
+SHOPIFY_API_TOKEN=de74343e58263fa4a210f386e28e5994
+DATO_API_TOKEN=
+
+```
+
+
+____
+
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <h1 align="center">
 Gatsby Shopify Starter
