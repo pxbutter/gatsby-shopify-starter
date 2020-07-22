@@ -27,7 +27,6 @@ To do:
 
 Later
 - Blog
--
 
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <h1 align="center">
