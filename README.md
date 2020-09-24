@@ -9,7 +9,7 @@ To do:
 - Side Cart ✅
 - Select qty on PDP ✅
 - Variant selector on PDP ✅
-- Add webhooks from Shopify to trigger netlify rebuilds when updates are made in Shopify admin (including product invetory updates) ✅
+- Add webhooks from Shopify to trigger netlify rebuilds when updates are made in Shopify (including product invetory updates) ✅
 - Setup Dato: integrate with Shopify, navigation, blog, 
 - Check stock on page load and set product form state. Sold out UI on PDP, product card, cart(fallback, api response).
 - Image slider on PDP (Slick)
