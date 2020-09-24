@@ -15,14 +15,16 @@ const Cart = ({ isCartOpen }) => {
   let qtyArr = Array.from(Array(10), (_, i) => i + 1)
 
   // Adds more select options to line item quantity selector if large quantities required
-  checkout.lineItems.map(item => {
-    if (item.quantity > 8) {
-      qtyArr = Array.from(
-        Array(Math.ceil(item.quantity / 10) * 10 + 10),
-        (_, i) => i + 1
-      )
-    }
-  })
+  if (checkout && checkout.lineItems) {
+    checkout.lineItems.map(item => {
+      if (item.quantity > 8) {
+        qtyArr = Array.from(
+          Array(Math.ceil(item.quantity / 10) * 10 + 10),
+          (_, i) => i + 1
+        )
+      }
+    })
+  }
 
   const cartDrawerVariants = {
     open: {
