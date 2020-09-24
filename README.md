@@ -9,26 +9,26 @@ To do:
 - Side Cart ✅
 - Select qty on PDP ✅
 - Variant selector on PDP ✅
-- Check stock on page load and set product form state. Sold out UI on PDP, product card, cart(fallback, api response).
 - Add webhooks from Shopify to trigger netlify rebuilds when updates are made in Shopify admin (including product invetory updates) ✅
-- Side cart upsell
+- Setup Dato: integrate with Shopify, navigation, blog, 
+- Check stock on page load and set product form state. Sold out UI on PDP, product card, cart(fallback, api response).
 - Image slider on PDP (Slick)
-- Multicurrency: Customer can update currency on site without reload. Customer can checkout in preferred currency (https://github.com/Shopify/js-buy-sdk/issues/706). Different content displayed on PDP depending on currency ("Delivering to: e.g. AUS" -> "2 Day Express Shipping from Melbourne, Australia")
-- Breadcrumbs
-- Collections page
-- Announcement Bar
 - Variant selector changes image
 - User accounts
-- Source yotpo reviews to PDP
-- Modal component
+- Collections page
 - Collection Filtering
-- Accordion component (faq page)
+- Contact form (netlify, formik)
+- Announcement Bar
+- Accordion component
+- Modal component
+- PDP upsell
+- Sidecart upsell
+- Multicurrency: Customer can update currency on site without reload. Customer can checkout in preferred currency (https://github.com/Shopify/js-buy-sdk/issues/706). Different content displayed on PDP depending on currency ("Delivering to: e.g. AUS" -> "2 Day Express Shipping from Melbourne, Australia")
+- Breadcrumbs
+- Source yotpo reviews to PDP
 - Klaviyo signup form
 - Cart page?
-- Subscription stepped workflow and checkout
-- Sidecart upsell
-- PDP upsell
-- Contact form (reply deflection)
+- Subscription stepped workflow and checkout?
 
 Later
 
