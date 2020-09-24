@@ -55,8 +55,8 @@ const HeaderWrapper = styled.header`
 
 const Header = ({ siteTitle }) => {
   const { isCartOpen, toggleCartOpen, checkout } = useContext(StoreContext)
-  let qty = 0;
-  if (checkout && checkout.lineItems !== undefined) {
+  let qty = 0
+  if (checkout && checkout.lineItems && checkout.lineItems !== undefined) {
     qty = checkout.lineItems.reduce((total, item) => {
       return total + item.quantity
     }, 0)
