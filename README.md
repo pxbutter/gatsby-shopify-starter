@@ -1,17 +1,21 @@
+<h1 align="center">
+Gatsby Shopify Starter
+</h1>
+
 To do:
 - Pull content from Shopify and dynamically create pages ✅
 - Add to cart from anywhere ✅
 - Side Cart ✅
 - Select qty on PDP ✅
 - Variant selector on PDP ✅
-- Sold out UI on PDP, product card, cart(fallback, api response).
-- Add webhooks from Shopify to trigger netlify rebuilds when updates are made in Shopify admin (including product invetory updates)
+- Check stock on page load and set product form state. Sold out UI on PDP, product card, cart(fallback, api response).
+- Add webhooks from Shopify to trigger netlify rebuilds when updates are made in Shopify admin (including product invetory updates) ✅
+- Side cart upsell
 - Image slider on PDP (Slick)
 - Multicurrency: Customer can update currency on site without reload. Customer can checkout in preferred currency (https://github.com/Shopify/js-buy-sdk/issues/706). Different content displayed on PDP depending on currency ("Delivering to: e.g. AUS" -> "2 Day Express Shipping from Melbourne, Australia")
 - Breadcrumbs
 - Collections page
 - Announcement Bar
-- Check stock on page load and set product form state
 - Variant selector changes image
 - User accounts
 - Source yotpo reviews to PDP
@@ -27,13 +31,19 @@ To do:
 
 Later
 - Blog
--
+
+Add `.env.peoduction` & `.env.development` to the root directory:
+```
+SHOPIFY_SHOP_NAME=gatsby-starter
+SHOPIFY_API_TOKEN=de74343e58263fa4a210f386e28e5994
+DATO_API_TOKEN=
+
+```
+
+
+____
 
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
-<h1 align="center">
-Gatsby Shopify Starter
-</h1>
-
 Kick off your project with this default boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
 
 _Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.org/docs/gatsby-starters/)._
