@@ -15,7 +15,7 @@ const Cart = ({ isCartOpen }) => {
   let qtyArr = Array.from(Array(10), (_, i) => i + 1)
 
   // Adds more select options to line item quantity selector if large quantities required
-  if (checkout && checkout.lineItems) {
+  if (checkout && checkout.lineItems && checkout.lineItems !== undefined) {
     checkout.lineItems.map(item => {
       if (item.quantity > 8) {
         qtyArr = Array.from(
